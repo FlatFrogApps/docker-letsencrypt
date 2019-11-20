@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y git wget cron bc
 
 RUN mkdir -p /letsencrypt/challenges/.well-known/acme-challenge
 RUN wget https://dl.eff.org/certbot-auto
+RUN chmod +x certbot-auto
 RUN mv certbot-auto /usr/local/bin/letsencrypt
 
 # You should see "OK" if you go to http://<domain>/.well-known/acme-challenge/health
