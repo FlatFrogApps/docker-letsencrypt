@@ -3,9 +3,8 @@ FROM nginx
 RUN apt-get update && apt-get install -y git wget cron bc
 
 RUN mkdir -p /letsencrypt/challenges/.well-known/acme-challenge
-RUN git clone https://github.com/certbot/certbot /letsencrypt/app
-WORKDIR /letsencrypt/app
-RUN ./letsencrypt-auto; exit 0
+RUN https://dl.eff.org/certbot-auto
+RUN mv certbot-auto /usr/local/bin/letsencrypt
 
 # You should see "OK" if you go to http://<domain>/.well-known/acme-challenge/health
 
@@ -29,8 +28,6 @@ ADD refresh_certs.sh /letsencrypt/
 ADD start.sh /letsencrypt/
 
 ADD nginx/letsencrypt.conf /etc/nginx/snippets/letsencrypt.conf
-
-RUN ln -s /root/.local/share/letsencrypt/bin/letsencrypt /usr/local/bin/letsencrypt
 
 WORKDIR /letsencrypt
 
