@@ -12,7 +12,7 @@ RUN mv certbot-auto /usr/local/bin/letsencrypt
 RUN echo "OK" > /letsencrypt/challenges/.well-known/acme-challenge/health
 
 # Install kubectl
-RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.6.3/bin/linux/amd64/kubectl
+RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.15.3/bin/linux/amd64/kubectl
 RUN chmod +x kubectl
 RUN mv kubectl /usr/local/bin/
 
@@ -29,6 +29,8 @@ ADD refresh_certs.sh /letsencrypt/
 ADD start.sh /letsencrypt/
 
 ADD nginx/letsencrypt.conf /etc/nginx/snippets/letsencrypt.conf
+
+RUN ln -s /letsencrypt/app/letsencrypt-auto /usr/local/bin/letsencrypt
 
 WORKDIR /letsencrypt
 
