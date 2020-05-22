@@ -30,7 +30,7 @@ ADD start.sh /letsencrypt/
 
 ADD nginx/letsencrypt.conf /etc/nginx/snippets/letsencrypt.conf
 
-RUN ln -s /letsencrypt/app/letsencrypt-auto /usr/local/bin/letsencrypt
+#RUN ln -s /letsencrypt/app/letsencrypt-auto /usr/local/bin/letsencrypt
 
 WORKDIR /letsencrypt
 
